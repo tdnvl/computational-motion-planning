@@ -22,9 +22,9 @@ y13 = P1(3,2);
 z13 = 0;
 
 
-A1 = [x11,y11,z11];
-B1 = [x12,y12,z12];
-C1 = [x13,y13,z13];
+P11 = [x11,y11,z11];
+P12 = [x12,y12,z12];
+P13 = [x13,y13,z13];
 
 x21 = P2(1,1);
 y21 = P2(1,2);
@@ -37,15 +37,22 @@ y23 = P2(3,2);
 z23 = 0;
 
 
-A2 = [x21,y21,z21];
-B2 = [x22,y22,z22];
-C2 = [x23,y23,z23];
+P21 = [x21,y21,z21];
+P22 = [x22,y22,z22];
+P23 = [x23,y23,z23];
 
+
+    
 
 
 function sameSide(Q1,Q2,F,G) % p1, p2, a, b
-    CP1 = cross(G-F,Q1-F);
-    CP2 = cross(G-F,Q2-F);
+    
+    GF = [F(1,:)-G(1,:),F(2,:)-G(2,:),F(3,:)-G(3,:)];
+    Q1F = [F(1,:)-Q1(1,:),F(2,:)-Q1(2,:),F(3,:)-Q1(3,:)];
+    Q2F = [F(1,:)-Q2(1,:),F(2,:)-Q2(2,:),F(3,:)-Q2(3,:)];
+    
+    CP1 = cross(GF,Q1F);
+    CP2 = cross(GF,Q2F);
     
     if cross(CP1,CP2) >= 0
         sameflag = true;
@@ -53,9 +60,17 @@ function sameSide(Q1,Q2,F,G) % p1, p2, a, b
 end
 
 function PointInTriangle(p,a,b,c)
-    if SameSide(p,A1,B1,C1) && SameSide(p,B1,A1,C1)
-        && SameSide(p,C1,A1,B1) then return true
-    else return false
+    
+    for i=1:3
+    
+        if sameSide(P2i,P11,P12,P13) && sameSide(P2i,P12,P11,P13) && sameSide(P2i,P13,P11,P12)
+            flag = true;
+        else flag = false;
+        end
+        
+    end
+    
+end
 
 % *******************************************************************
 end
