@@ -11,6 +11,9 @@ function flag = triangle_intersection(P1, P2)
 
 % See http://blackpawn.com/texts/pointinpoly/default.html
 
+P1
+P2
+
 x11 = P1(1,1);
 y11 = P1(1,2);
 z11 = 0;
@@ -40,9 +43,6 @@ z23 = 0;
 P21 = [x21,y21,z21];
 P22 = [x22,y22,z22];
 P23 = [x23,y23,z23];
-
-
-    
 
 
 function sameSide(Q1,Q2,F,G) % p1, p2, a, b
